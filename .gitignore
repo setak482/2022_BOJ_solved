@@ -1,9 +1,0 @@
-*.exe
-*.json
-*.asm
-*.s
-*.S
-.vscode/
-.vs/
-test.*
-*.txt
