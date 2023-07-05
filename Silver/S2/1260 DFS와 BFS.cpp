@@ -1,55 +1,45 @@
-//DFS와 BFS bj1260
-#include <iostream>
-#include <vector>
-#include <queue>
-#include <algorithm>
+#include <bits/stdc++.h>
+#define SIZE 1001
 using namespace std;
-
-int node, edge, head;
-bool dfs_visited[1001];
-bool bfs_visited[1001];
-vector<vector<int>> adj(1001);
-
-void dfs(vector<vector<int>> v, int head) {
-    dfs_visited[head] = true;
-    sort(v[head].begin(), v[head].end());
-    cout << head << " ";
-    for (int i = 0; i < v[head].size(); i++){
-        int next = v[head][i];
-        if(!dfs_visited[next]) dfs(v, next);
+vector<int> graph[SIZE];
+int vertex, edge;
+bool dfs_visited[SIZE], bfs_visited[SIZE];
+void dfs(int start){
+    dfs_visited[start] = true;
+    cout << start << ' ';
+    for(int i = 0; i < graph[start].size(); i++){
+        if(!dfs_visited[graph[start][i]]) dfs(graph[start][i]);
     }
-    if (head==node) return; 
 }
-void bfs(vector<vector<int>> v, int head) {
-    for (int i = 1; i < node+1; i++){
-        sort(v[i].begin(), v[i].end());
-    }
+void bfs(int start){
     queue<int> q;
-    q.push(head);
-    bfs_visited[head] = true;
+    q.push(start);
+    bfs_visited[start] = true;      // 방문표시
     while(!q.empty()){
-        int elem = q.front();
+        int cur = q.front();
         q.pop();
-        cout << elem << " ";
-        
-        for (int i = 0; i < v[elem].size(); i++){
-            int next = v[elem][i];
-            if(!bfs_visited[next]){
-                q.push(next);
-                bfs_visited[next] = true;
+        cout << cur << ' ';
+        for(int i = 0; i < graph[cur].size(); i++){
+            if(!bfs_visited[graph[cur][i]]){
+                q.push(graph[cur][i]);
+                bfs_visited[graph[cur][i]] = true;
             }
         }
     }
 }
-int main() {
-    cin >> node >> edge >> head;
-
-    for (int i = 0; i < edge; i++) {
-        int a, b; cin >> a >> b;
-        adj[a].push_back(b);
-        adj[b].push_back(a);
+int main(){
+    int init;
+    cin >> vertex >> edge >> init;
+    for(int i = 0; i < edge; i++){
+        int a, b;
+        cin >> a >> b;
+        graph[a].push_back(b);
+        graph[b].push_back(a);
     }
-    dfs(adj, head);
-    cout << "\n";
-    bfs(adj, head);
+    for(int i = 1; i <= vertex; i++){
+        sort(graph[i].begin(), graph[i].end());
+    }
+    dfs(init);
+    cout << '\n';
+    bfs(init);
 }
