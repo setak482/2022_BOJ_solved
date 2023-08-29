@@ -3,8 +3,7 @@
 using namespace std;
 int main(){
     int N, p, q, maxdp[tri], mindp[tri], temp[tri];
-    cin >> N;
-    cin >> maxdp[0] >> maxdp[1] >> maxdp[2];
+    cin >> N >> maxdp[0] >> maxdp[1] >> maxdp[2];
     memcpy(mindp, maxdp, sizeof(maxdp));
     for(int i = 0; i < N-1; i++){
         cin >> temp[0] >> temp[1] >> temp[2];
