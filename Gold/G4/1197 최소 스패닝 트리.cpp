@@ -1,13 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 struct graph_info{
-    int s;
-    int e;
-    int dist;
-    bool operator <(const graph_info &other) const{
-        return dist > other.dist; 
-    }
-};  
+    int s, e, dist;
+    bool operator <(const graph_info &other) const{return dist > other.dist; }
+};
 int edge, vertex, entire_weight;
 priority_queue<graph_info> pq;
 int mst[10001];
