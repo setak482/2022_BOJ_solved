@@ -10,9 +10,7 @@ int bfs(){
         int cur = q.front().first;
         int turn = q.front().second;
         q.pop();
-        if(cur == 100){
-            return turn;
-        }
+        if(cur == 100) return turn;
         if(cur > 100) continue;
         for(int i = 1; i <= 6; i++){
             int next = cur + i;
