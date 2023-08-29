@@ -18,5 +18,5 @@ int main(){
         mindp[1] = min(min(p, mindp[1]), q) + temp[1];
     }
     cout << max(max(maxdp[0], maxdp[1]), maxdp[2]) << ' ' <<
-        min(min(mindp[0], mindp[1]), mindp[2]);
+            min(min(mindp[0], mindp[1]), mindp[2]);
 }
